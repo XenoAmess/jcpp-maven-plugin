@@ -6,6 +6,7 @@ import org.apache.maven.plugin.MojoExecutionException;
 import org.apache.maven.plugins.annotations.LifecyclePhase;
 import org.apache.maven.plugins.annotations.Mojo;
 import org.apache.maven.plugins.annotations.Parameter;
+import org.apache.maven.project.MavenProject;
 
 import java.io.File;
 import java.util.Arrays;
@@ -36,8 +37,12 @@ public class PreprocessTestSources extends AbstractMojo {
     @Parameter(property = "libPaths")
     private String[] libPaths;
 
+    @Parameter(defaultValue = "${project}")
+    private MavenProject project;
+
     @Override
     public void execute() throws MojoExecutionException {
+        project.addTestCompileSourceRoot(outputDirectory.getAbsolutePath());
         if (this.args == null) {
             this.args = new String[0];
         }
