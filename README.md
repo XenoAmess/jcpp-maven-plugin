@@ -5,8 +5,7 @@
 jcpp-maven-plugin, A plugin for C pre processing in maven project.
 
 ## Goal:
-Use a c pre processor (org.anarres.jcpp) to process your java templates in a specified folder
-and then put them into another specified folder.
+Use a c pre processor ([org.anarres.jcpp](https://github.com/shevek/jcpp)) to process your java templates in a specified folder before build.
 
 ## Usage:
 
@@ -102,4 +101,9 @@ All params and their default value are listed here.
 libPaths will be uniqued before the plugin use libPaths, so don't worry if you have duplicated strings in libPaths.
 sourceDirectory will always be added to libPaths automatically before the plugin use libPaths.
 
-**project** means your project. I don't think it shall be changed but if you insisted...
+**project** means your project. I don't think it shall be changed but if you insisted, then you are free to do what you want.
+
+## Params:
+
+Projects using this:
+https://github.com/XenoAmess/commonx
