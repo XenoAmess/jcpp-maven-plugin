@@ -103,7 +103,7 @@ sourceDirectory will always be added to libPaths automatically before the plugin
 
 **project** means your project. I don't think it shall be changed but if you insisted, then you are free to do what you want.
 
-## Params:
+## Live Demo:
 
 Projects using this:
 https://github.com/XenoAmess/commonx
