@@ -45,12 +45,12 @@ Use a c pre processor ([org.anarres.jcpp](https://github.com/shevek/jcpp)) to pr
                             <goal>preprocess-test-sources</goal>
                         </goals>
                         <configuration>
-                            <testSourceDirectory>
+                            <sourceDirectory>
                                 ${basedir}/src/test/java-templates
-                            </testSourceDirectory>
-                            <testOutputDirectory>
+                            </sourceDirectory>
+                            <outputDirectory>
                                 ${project.build.directory}/generated-test-sources/src/test/java
-                            </testOutputDirectory>
+                            </outputDirectory>
                         </configuration>
                     </execution>
                 </executions>
