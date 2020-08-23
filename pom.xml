@@ -5,11 +5,10 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.xenoamess</groupId>
     <artifactId>jcpp-maven-plugin</artifactId>
-    <version>0.2.1-SNAPSHOT</version>
+    <version>0.2.1</version>
     <packaging>maven-plugin</packaging>
     <name>${project.artifactId}</name>
-    <description>maven plugin for jcpp.
-    </description>
+    <description>maven plugin for jcpp.</description>
     <url>https://github.com/XenoAmess/jcpp-maven-plugin</url>
     <licenses>
         <license>
