@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.xenoamess</groupId>
     <artifactId>jcpp-maven-plugin</artifactId>
-    <version>0.2.1</version>
+    <version>0.2.2</version>
     <packaging>maven-plugin</packaging>
     <name>${project.artifactId}</name>
     <description>maven plugin for jcpp.</description>
@@ -35,7 +35,7 @@
         <maven>${maven.version}</maven>
     </prerequisites>
     <properties>
-        <maven.version>3.6.3</maven.version>
+        <maven.version>[3.0.0,4.0.0)</maven.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8
         </project.reporting.outputEncoding>
