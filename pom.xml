@@ -91,7 +91,7 @@
         <dependency>
             <groupId>org.anarres</groupId>
             <artifactId>jcpp</artifactId>
-            <version>1.4.13</version>
+            <version>1.4.14</version>
         </dependency>
     </dependencies>
 
