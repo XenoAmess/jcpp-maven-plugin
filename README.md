@@ -11,53 +11,53 @@ Use a c pre processor ([org.anarres.jcpp](https://github.com/shevek/jcpp)) to pr
 
 1. include it in your `<build>`
 
-    ```pom
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>com.xenoamess</groupId>
-                <artifactId>jcpp-maven-plugin</artifactId>
-                <version>0.2.0</version>
-                <executions>
-                    <execution>
-                        <id>preprocess-sources</id>
-                        <phase>generate-sources</phase>
-                        <goals>
-                            <goal>preprocess-sources</goal>
-                        </goals>
-                        <configuration>
-                            <sourceDirectory>
-                                ${basedir}/src/main/java-templates
-                            </sourceDirectory>
-                            <outputDirectory>
-                                ${project.build.directory}/generated-sources/src/main/java
-                            </outputDirectory>
-                            <libPaths>
-                                <param>${basedir}/src/main/resources/templates
-                                </param>
-                            </libPaths>
-                        </configuration>
-                    </execution>
-                    <execution>
-                        <id>preprocess-test-sources</id>
-                        <phase>generate-test-sources</phase>
-                        <goals>
-                            <goal>preprocess-test-sources</goal>
-                        </goals>
-                        <configuration>
-                            <sourceDirectory>
-                                ${basedir}/src/test/java-templates
-                            </sourceDirectory>
-                            <outputDirectory>
-                                ${project.build.directory}/generated-test-sources/src/test/java
-                            </outputDirectory>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
-        </plugins>
-    </build>
-    ```
+```pom
+<build>
+     <plugins>
+         <plugin>
+             <groupId>com.xenoamess</groupId>
+             <artifactId>jcpp-maven-plugin</artifactId>
+             <version>0.2.0</version>
+             <executions>
+                 <execution>
+                     <id>preprocess-sources</id>
+                     <phase>generate-sources</phase>
+                     <goals>
+                         <goal>preprocess-sources</goal>
+                     </goals>
+                     <configuration>
+                         <sourceDirectory>
+                             ${basedir}/src/main/java-templates
+                         </sourceDirectory>
+                         <outputDirectory>
+                             ${project.build.directory}/generated-sources/src/main/java
+                         </outputDirectory>
+                         <libPaths>
+                             <param>${basedir}/src/main/resources/templates
+                             </param>
+                         </libPaths>
+                     </configuration>
+                 </execution>
+                 <execution>
+                     <id>preprocess-test-sources</id>
+                     <phase>generate-test-sources</phase>
+                     <goals>
+                         <goal>preprocess-test-sources</goal>
+                     </goals>
+                     <configuration>
+                         <sourceDirectory>
+                             ${basedir}/src/test/java-templates
+                         </sourceDirectory>
+                         <outputDirectory>
+                             ${project.build.directory}/generated-test-sources/src/test/java
+                         </outputDirectory>
+                     </configuration>
+                 </execution>
+             </executions>
+         </plugin>
+     </plugins>
+</build>
+```
 
 2. write your code template.
 put source template code into `<sourceDirectory>`
