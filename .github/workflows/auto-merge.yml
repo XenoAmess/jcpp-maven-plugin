@@ -1,14 +1,63 @@
-name: auto-merge
+# Licensed to the Apache Software Foundation (ASF) under one or more
+# contributor license agreements.  See the NOTICE file distributed with
+# this work for additional information regarding copyright ownership.
+# The ASF licenses this file to You under the Apache License, Version 2.0
+# (the "License"); you may not use this file except in compliance with
+# the License.  You may obtain a copy of the License at
+#
+#      http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+name: Dependabot auto-merge
 
 on:
   pull_request:
 
+permissions:
+  pull-requests: write
+  contents: write
+
 jobs:
-  auto-merge:
+  dependabot:
+    if: |
+      github.event.pull_request.user.login == 'dependabot[bot]' ||
+      github.event.pull_request.user.login == 'app/dependabot'
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v7
-      - uses: ahmadnassri/action-dependabot-auto-merge@v2
+      - name: Dependabot metadata
+        id: meta
+        uses: dependabot/fetch-metadata@v2
         with:
-          target: minor
-          github-token: ${{ secrets.mytoken }}
+          github-token: "${{ secrets.GITHUB_TOKEN }}"
+
+      - name: Check if auto-merge applicable
+        id: check
+        run: |
+          TYPE="${{ steps.meta.outputs.update-type }}"
+          REF="${{ github.event.pull_request.head.ref }}"
+          if [[ "$TYPE" == "version-update:semver-patch" ]] || \
+             [[ "$TYPE" == "version-update:semver-minor" ]] || \
+             { [[ "$TYPE" == "version-update:semver-major" ]] && [[ "$REF" == dependabot/github_actions/* ]]; }; then
+            echo "should_merge=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "should_merge=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Approve dependabot PR
+        if: steps.check.outputs.should_merge == 'true'
+        run: gh pr review --approve "$PR_URL"
+        env:
+          PR_URL: ${{ github.event.pull_request.html_url }}
+          GH_TOKEN: ${{ secrets.MYTOKEN }}
+
+      - name: Enable auto-merge
+        if: steps.check.outputs.should_merge == 'true'
+        run: gh pr merge --auto --rebase "$PR_URL"
+        env:
+          PR_URL: ${{ github.event.pull_request.html_url }}
+          GH_TOKEN: ${{ secrets.MYTOKEN }}
